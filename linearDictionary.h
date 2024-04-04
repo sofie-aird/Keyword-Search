@@ -41,7 +41,7 @@ class LinearDictionary : public Dictionary<K, V> {
     vector<pair<K, V>> getItems();
 
   private:
-    /* TODO: put your member variables and helper methods here */
+    vector<pair<K, V>> items;
 };
 
 #include "linearDictionary-inl.h"

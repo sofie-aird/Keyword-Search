@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "adts/dictionary.h"
+#include "linearDictionary.h"
 
 template <typename K, typename V> class HashTable : public Dictionary<K, V> {
   public:
@@ -44,9 +45,13 @@ template <typename K, typename V> class HashTable : public Dictionary<K, V> {
     void remove(K key);
     vector<K> getKeys();
     vector<pair<K, V>> getItems();
+    void ensureCapacity();
 
   private:
-    /* TODO: put your member variables and helper methods here */
+    int size;
+    int capacity;
+    float maxLoadFactor;
+    LinearDictionary<K, V>* table;
 };
 
 #include "hashTable-inl.h"
