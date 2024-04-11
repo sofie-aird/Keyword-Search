@@ -16,6 +16,7 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    // TODO
+    KeywordSearcher search;
+    search.loadWords(argv[2]);
     return 0;
 }

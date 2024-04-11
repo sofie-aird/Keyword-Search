@@ -11,6 +11,9 @@
 
 #include <string>
 #include <vector>
+#include "hashTable.h"
+#include "adts/stlList.h"
+#include "adts/stlMaxPriorityQueue.h"
 
 /**
  * This class represents a tool which can be used to perform a keyword
@@ -50,5 +53,6 @@ class KeywordSearcher {
     std::vector<std::pair<int, int>> search(std::string word);
 
   private:
-    // TODO: put your fields and helper declarations here!
+    HashTable<int, int>* hashTable;
+    STLList<std::string>* pages;
 };
