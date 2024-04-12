@@ -29,6 +29,7 @@ int main(int argc, char** argv) {
     KeywordSearcher ks;
     ks.loadWords("test_data/ATranslationGuideFromPython2ToC++.txt");
     vector<pair<int, int>> result = ks.search("python");
+    cout << "searching for: python" << endl;
     int size = result.size();
     for (int i = 0; i < size; i++) {
       cout << "Page " << result[i].first << " has " << result[i].second << " occurrences" << endl; 

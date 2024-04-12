@@ -15,13 +15,13 @@
 using namespace std;
 
 KeywordSearcher::KeywordSearcher() {
-    // Allocate a hash table
+    // Allocate a hash table and list of pages
     this->hashTable = new HashTable<int, int>();
     this->pages = new STLList<string>();
 }
 
 KeywordSearcher::~KeywordSearcher() {
-    // Delete the hash table
+    // Delete the hash table and list of pages
     delete this->hashTable;
     delete this->pages;
 }
@@ -51,7 +51,7 @@ void KeywordSearcher::loadWords(string filename) {
                 this->pages->insertLast(pageText);
             }
             // Clear the page text
-            pageText = "";
+            pageText = " ";
         }
         // We are not at the start of a new page
         else {
@@ -68,6 +68,14 @@ void KeywordSearcher::loadWords(string filename) {
 
 vector<pair<int, int>> KeywordSearcher::search(string word) {
     vector<pair<int, int>> result;
+
+    // Reset the hash table from the last search
+    delete this->hashTable;
+    this->hashTable = new HashTable<int, int>();
+
+    // Add spaces so we dont get this word as a subword in larger words
+    word = " " + word + " ";
+
     // Find out how many pages there are
     int size = this->pages->getSize();
     // Loop through each page
@@ -98,6 +106,7 @@ vector<pair<int, int>> KeywordSearcher::search(string word) {
         // Insert the pair into the queue, with occurrence count as the priotity
         queue->insert(occurrences[i].second, occurrences[i].first);
     }
+    
     // While the queue still has things in it
     size = 0;
     while (!queue->isEmpty()) {
