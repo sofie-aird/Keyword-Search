@@ -116,16 +116,18 @@ vector<pair<K, V>> HashTable<K, V>::getItems() {
     return result;
 }
 
-// TODO: put any other definitions here
 template <typename K, typename V> void HashTable<K, V>::ensureCapacity() {
     // Following pseudocode given in lecture
+    // Allocate double the space
     LinearDictionary<K, V>* new_table = new LinearDictionary<K, V>[this->capacity*2];
+    // Get all the items and move them to the new array
     vector<pair<K, V>> items = getItems();
     int vectorSize = items.size();
     for (int i = 0; i < vectorSize; i++) {
         int index = hash(items[i].first, this->capacity*2);
         new_table[index].insert(items[i].first, items[i].second);
     }
+    // Delete old table and double capacity
     delete [] this->table;
     this->table = new_table;
     this->capacity = this->capacity*2;

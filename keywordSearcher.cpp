@@ -35,7 +35,7 @@ void KeywordSearcher::loadWords(string filename) {
     // Open the file
     myFile.open(filename);
     if (!myFile.is_open()) {
-        throw runtime_error("file " + filename + " failed to open ");
+        throw runtime_error("File " + filename + " failed to open.");
     }
 
     // Read in the first line
@@ -64,6 +64,8 @@ void KeywordSearcher::loadWords(string filename) {
     // Insert the last page
     pageNumber++;
     this->pages->insertLast(pageText);
+
+    std::cout << "Words successfully loaded" << endl;
 }
 
 vector<pair<int, int>> KeywordSearcher::search(string word) {
